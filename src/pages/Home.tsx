@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, Clock, Trophy, Users, Zap, Code2, MapPin } from 'lucide-react';
@@ -49,7 +48,7 @@ const Home = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center matrix-bg overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center matrix-bg overflow-hidden pt-24 md:pt-32">
         <MatrixRain />
         <ThreeScene />
         
@@ -58,32 +57,31 @@ const Home = () => {
         
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           <div data-aos="fade-up" data-aos-duration="1000">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-mono font-bold mb-6 leading-tight">
-              <span className="text-vibe-green glow-text">CODESTORM</span>
-              <br />
-              <span className="text-white">ELITE</span>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-mono font-bold mb-4 sm:mb-6 leading-tight tracking-tight">
+              <span className="text-vibe-green glow-text block">CODESTORM</span>
+              <span className="text-white block mt-2">ELITE</span>
             </h1>
             
-            <div className="text-xl md:text-2xl font-mono text-vibe-green mb-4 animate-pulse-green flex items-center justify-center space-x-2">
+            <div className="text-lg sm:text-xl md:text-2xl font-mono text-vibe-green mb-4 animate-pulse-green flex items-center justify-center space-x-2">
               <CodingLoader size="sm" />
               <span>6 HOURS HACKATHON</span>
               <CodingLoader size="sm" />
             </div>
             
-            <p className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-white">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 text-white">
               Code. Create. Compete.
             </p>
             
-            <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
               Storm the coding world in the ultimate 6-hour hackathon experience. 
               Build innovative solutions, compete with elite developers, and claim your victory.
             </p>
           </div>
           
-          <div data-aos="fade-up" data-aos-delay="300" className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div data-aos="fade-up" data-aos-delay="300" className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
             <Link
               to="/enrollment"
-              className="group bg-vibe-green text-black px-8 py-4 rounded-lg text-lg font-bold hover:bg-white transition-all duration-300 hover:scale-105 animate-glow-soft flex items-center space-x-2"
+              className="w-full sm:w-auto group bg-vibe-green text-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-bold hover:bg-white transition-all duration-300 hover:scale-105 animate-glow-soft flex items-center justify-center space-x-2"
             >
               <span>Join the Storm - FREE</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -91,19 +89,19 @@ const Home = () => {
             
             <Link
               to="/about"
-              className="glass-effect px-8 py-4 rounded-lg text-lg font-medium hover:bg-vibe-green hover:text-black transition-all duration-300 hover:scale-105 flex items-center space-x-2"
+              className="w-full sm:w-auto glass-effect px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-medium hover:bg-vibe-green hover:text-black transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
             >
               <span>Learn More</span>
             </Link>
           </div>
           
-          <div data-aos="fade-up" data-aos-delay="600" className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div data-aos="fade-up" data-aos-delay="600" className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {features.map((feature, index) => (
-              <div key={index} className="glass-effect p-6 rounded-lg text-center hover:bg-vibe-green hover:text-black transition-all duration-300 hover:scale-105">
+              <div key={index} className="glass-effect p-4 sm:p-6 rounded-lg text-center hover:bg-vibe-green hover:text-black transition-all duration-300 hover:scale-105">
                 <div className="text-vibe-green mb-3 flex justify-center">
                   {feature.icon}
                 </div>
-                <div className="text-2xl font-bold mb-2">{feature.title}</div>
+                <div className="text-xl sm:text-2xl font-bold mb-2">{feature.title}</div>
                 <div className="text-sm opacity-80">{feature.description}</div>
               </div>
             ))}
@@ -111,7 +109,7 @@ const Home = () => {
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10">
           <div className="w-6 h-10 border-2 border-vibe-green rounded-full flex justify-center">
             <div className="w-1 h-3 bg-vibe-green rounded-full mt-2 animate-bounce"></div>
           </div>

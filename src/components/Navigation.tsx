@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Zap } from 'lucide-react';
@@ -27,10 +26,10 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'nav-blur py-2' : 'bg-transparent py-4'
+      scrolled || isOpen ? 'nav-blur py-2 bg-vibe-black/95 backdrop-blur-lg' : 'bg-transparent py-4 md:bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="p-2 bg-vibe-green rounded-lg group-hover:animate-pulse">
@@ -78,7 +77,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-vibe-gray">
+          <div className="md:hidden mt-4 pb-4 border-t border-vibe-gray/20 bg-vibe-black/95 backdrop-blur-lg">
             <div className="flex flex-col space-y-2 mt-4">
               {navItems.map((item) => (
                 <Link
@@ -87,8 +86,8 @@ const Navigation = () => {
                   onClick={() => setIsOpen(false)}
                   className={`px-3 py-2 font-medium transition-all duration-300 ${
                     isActive(item.path)
-                      ? 'text-vibe-green bg-vibe-gray rounded-lg'
-                      : 'text-white hover:text-vibe-green hover:bg-vibe-gray rounded-lg'
+                      ? 'text-vibe-green bg-vibe-gray/20 rounded-lg'
+                      : 'text-white hover:text-vibe-green hover:bg-vibe-gray/20 rounded-lg'
                   }`}
                 >
                   {item.name}
@@ -97,7 +96,7 @@ const Navigation = () => {
               <Link
                 to="/enrollment"
                 onClick={() => setIsOpen(false)}
-                className="bg-vibe-green text-black px-6 py-2 rounded-lg font-medium hover:bg-white transition-all duration-300 mt-4"
+                className="bg-vibe-green text-black px-6 py-2 rounded-lg font-medium hover:bg-white transition-all duration-300 mt-4 text-center"
               >
                 Join Now - FREE
               </Link>
