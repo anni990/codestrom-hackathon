@@ -21,13 +21,3 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-
-// export default defineConfig(({ mode }) => ({
-//   plugins: [react()],
-//   base: "/codestrom-hackathon",
-//   resolve: {
-//     alias: {
-//       '@': path.resolve(__dirname, 'src'),
-//     },
-//   },
-// }));
