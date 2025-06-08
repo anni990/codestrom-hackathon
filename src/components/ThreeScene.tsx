@@ -1,15 +1,15 @@
-
 import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!window.THREE || !mountRef.current) return;
+    if (!mountRef.current) return;
 
-    const scene = new window.THREE.Scene();
-    const camera = new window.THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new window.THREE.WebGLRenderer({ 
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ 
       alpha: true, 
       antialias: false, // Disable antialias for better performance
       powerPreference: "low-power" // Use low power mode
@@ -21,19 +21,19 @@ const ThreeScene: React.FC = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     // Reduce number of objects for better performance
-    const cubes: any[] = [];
-    const cubeGeometry = new window.THREE.BoxGeometry(0.3, 0.3, 0.3); // Smaller cubes
+    const cubes: THREE.Mesh<THREE.BoxGeometry, THREE.MeshBasicMaterial>[] = [];
+    const cubeGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3); // Smaller cubes
     
     // Reduce cube count from 20 to 8
     for (let i = 0; i < 8; i++) {
-      const cubeMaterial = new window.THREE.MeshBasicMaterial({
+      const cubeMaterial = new THREE.MeshBasicMaterial({
         color: 0x00ff00,
         wireframe: true,
         transparent: true,
         opacity: 0.4 // Reduced opacity
       });
       
-      const cube = new window.THREE.Mesh(cubeGeometry, cubeMaterial);
+      const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
       cube.position.set(
         (Math.random() - 0.5) * 15,
         (Math.random() - 0.5) * 15,
@@ -50,7 +50,7 @@ const ThreeScene: React.FC = () => {
     }
 
     // Reduce particle count for better performance
-    const particleGeometry = new window.THREE.BufferGeometry();
+    const particleGeometry = new THREE.BufferGeometry();
     const particleCount = 300; // Reduced from 1000
     const positions = new Float32Array(particleCount * 3);
     
@@ -58,16 +58,16 @@ const ThreeScene: React.FC = () => {
       positions[i] = (Math.random() - 0.5) * 30;
     }
     
-    particleGeometry.setAttribute('position', new window.THREE.BufferAttribute(positions, 3));
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     
-    const particleMaterial = new window.THREE.PointsMaterial({
+    const particleMaterial = new THREE.PointsMaterial({
       color: 0x00ff00,
       size: 0.05, // Smaller particles
       transparent: true,
       opacity: 0.6
     });
     
-    const particles = new window.THREE.Points(particleGeometry, particleMaterial);
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
     scene.add(particles);
 
     camera.position.z = 12;
@@ -115,9 +115,11 @@ const ThreeScene: React.FC = () => {
       cubeGeometry.dispose();
       particleGeometry.dispose();
       cubes.forEach(cube => {
-        cube.material.dispose();
+        if (cube.material instanceof THREE.Material) {
+          cube.material.dispose();
+        }
       });
-      particles.material.dispose();
+      particleMaterial.dispose();
       renderer.dispose();
     };
   }, []);
